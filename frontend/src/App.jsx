@@ -190,7 +190,7 @@ function SignUpPage({ onSuccess, onBackToLanding }) {
     }
 
     try {
-      const response = await fetch('${API_BASE_URL}/api/auth/register', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
@@ -306,7 +306,7 @@ function SignInPage({ onSuccess, onBackToLanding }) {
     setLoading(true)
 
     try {
-      const response = await fetch('${API_BASE_URL}/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -473,7 +473,7 @@ function AdminDashboard({ userName, onLogout }) {
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch('${API_BASE_URL}/api/files', {
+      const response = await fetch(`${API_BASE_URL}/api/files`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       const data = await response.json()
@@ -495,7 +495,7 @@ function AdminDashboard({ userName, onLogout }) {
 
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch('${API_BASE_URL}/api/files/upload', {
+      const response = await fetch(`${API_BASE_URL}/api/files/upload`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
