@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+// This tells React to use your Cloudflare API domain in production, or localhost for local testing
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.jay24codes.me';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing')
@@ -188,7 +190,7 @@ function SignUpPage({ onSuccess, onBackToLanding }) {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('${API_BASE_URL}/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
@@ -304,7 +306,7 @@ function SignInPage({ onSuccess, onBackToLanding }) {
     setLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('${API_BASE_URL}/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -471,7 +473,7 @@ function AdminDashboard({ userName, onLogout }) {
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch('http://localhost:5000/api/files', {
+      const response = await fetch('${API_BASE_URL}/api/files', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       const data = await response.json()
@@ -493,7 +495,7 @@ function AdminDashboard({ userName, onLogout }) {
 
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch('http://localhost:5000/api/files/upload', {
+      const response = await fetch('${API_BASE_URL}/api/files/upload', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -519,7 +521,7 @@ function AdminDashboard({ userName, onLogout }) {
 
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch(`http://localhost:5000/api/files/${filename}`, {
+      const response = await fetch(`${API_BASE_URL}/api/files/${filename}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       })
@@ -633,7 +635,7 @@ function AdminDashboard({ userName, onLogout }) {
                       <span className="file-name truncate flex-1">{file.filename}</span>
                       <div className="file-actions">
                         <a
-                          href={`http://localhost:5000${file.url}`}
+                          href={`${API_BASE_URL}${file.url}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn btn-mini btn-secondary"
