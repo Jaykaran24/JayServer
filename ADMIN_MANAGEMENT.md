@@ -23,7 +23,7 @@ Your system uses **JWT tokens** with role-based access control. Users can be eit
    - Click "Connect"
    - Use your connection string:
      ```
-     mongodb+srv://jay24codes:Jay%402435@cluster0.bu5cgjc.mongodb.net/jay-dashboard
+     
      ```
    - Or use "New Connection" and paste the URI
 
